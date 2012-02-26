@@ -1,39 +1,32 @@
 #include "unity_fixture.h"
 #include <stdio.h>
-#include <memory.h>
+#include <string.h>
 
 TEST_GROUP(sprintf);
 
-static char output[100];
-static const char *expected;
+TEST_SETUP(sprintf){
 
-TEST_SETUP(sprintf)
-{
+}
+
+TEST_TEAR_DOWN(sprintf){
+
+}
+
+TEST(sprintf, NoFormatOperation){
+	char output[5];
 	memset(output, 0xaa, sizeof(output));
-	expected = "";
-}
 
-TEST_TEAR_DOWN(sprintf)
-{
-}
-
-static void expect(const char *s){
-	expected = s;
-}
-
-static void given(int charsWritten){
-	TEST_ASSERT_EQUAL(strlen(expected), charsWritten);
-	TEST_ASSERT_EQUAL_STRING(expected, output);
-	TEST_ASSERT_BYTES_EQUAL(0xaa, output[strlen(expected)+1]);
-}
-
-TEST(sprintf, NoFormatOperations)
-{
-	expect("hey");
-	given(sprintf(output, "hey"));
+	TEST_ASSERT_EQUAL( 3, sprintf(output, "hey"));
+	TEST_ASSERT_EQUAL_STRING( "hey", output);
+	TEST_ASSERT_BYTES_EQUAL(0xaa, output[4] );
 }
 
 TEST(sprintf, InsertString){
-	expect("Hello World\n");
-	given(sprintf(output, "Hello %s\n", "World"));
+	char output[20];
+	memset(output, 0xaa, sizeof(output));
+
+	TEST_ASSERT_EQUAL(12, sprintf( output, "Hello %s\n", "World"));
+	TEST_ASSERT_EQUAL_STRING("Hello World\n", output);
+	TEST_ASSERT_BYTES_EQUAL(0xaa, output[13] );
 }
+

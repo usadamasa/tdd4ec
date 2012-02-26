@@ -7,12 +7,12 @@ SILENCE = @
 COMPONENT_NAME = BookCode_Unity
 
 #--- Inputs ----#
-UNITY_HOME = unity.framework
+UNITY_HOME = /Library/Frameworks/unity.framework
 CPP_PLATFORM = Gcc
 PROJECT_HOME_DIR = .
 PROJECT_TEST_DIR = unity
 CPP_PLATFORM = Gcc
-UNITY_BUILD_HOME = unity.framework/extras/fixture/build
+UNITY_BUILD_HOME = /Library/Frameworks/unity.framework/extras/fixture/build
 
 UNITY_CFLAGS += -DUNITY_OUTPUT_CHAR=UnityOutputCharSpy_OutputChar
 UNITY_WARNINGFLAGS = -Wall -Werror -Wswitch-default
@@ -42,6 +42,7 @@ INCLUDE_DIRS =\
   $(UNITY_HOME)/extras/fixture/test\
   $(PROJECT_HOME_DIR)/include/HomeAutomation\
   $(PROJECT_HOME_DIR)/include/LedDriver\
+  $(PROJECT_HOME_DIR)/include \
   $(PROJECT_HOME_DIR)/include/util\
   $(PROJECT_HOME_DIR)/mocks\
   
